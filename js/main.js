@@ -49,6 +49,22 @@ var exampleStepsArray = [
 		status: 'upcoming',
 	}
 ];
+var exampleSubnavStepsArray = [
+	{
+		label: 'some text',
+		status: 'active',
+		callback: function(event){console.log(exampleStepsArray[0].label);}
+	},
+	{
+		label: 'some other text',
+		status: 'upcoming',
+		callback: function(event){console.log(exampleStepsArray[1].label);}
+	},
+	{
+		label: 'some text',
+		status: 'upcoming',
+	}
+];
 
 
 SvgStepNavigation.init(canvas,exampleStepsArray);

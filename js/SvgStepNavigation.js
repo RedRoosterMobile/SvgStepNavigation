@@ -3,7 +3,7 @@
  *
  *
  */
-var SvgStepNavigation = function () {
+var funcSvgStepNavigation = function () {
 
 	var ANIMATION_TIME=150;
 	var EASING='elastic';
@@ -13,6 +13,8 @@ var SvgStepNavigation = function () {
 	var _paperHeight;
 	var _paperWidth;
 	var _currentStep = 0;
+	var _currentSubNavStep = 0;
+	var _totalCurrentSubnavSteps;
 	var _radius=10;
 	var _stepsArray;
 	var _viewObjectsArray=[];
@@ -31,7 +33,6 @@ var SvgStepNavigation = function () {
 		addStepsToView();
 		
 	}
-	//TODO make this dynamic
 	function addStepsToView() {
 		var stepWidth = (_paperWidth/_totalSteps)-(_paperWidth/_totalSteps)/_totalSteps;
 		for (var i=0;i<_totalSteps;i++) {
@@ -89,6 +90,7 @@ var SvgStepNavigation = function () {
 			initializeView();
 		},
 		next: function(error) {
+			// TODO: add subnav logic
 			if (!!!error) {
 				
 				if (_currentStep<_totalSteps) {
@@ -135,10 +137,12 @@ var SvgStepNavigation = function () {
 			// move sourrounding to side
 			// spread subnav dots
 			// add callbacks
-			// next prev logic??
+			// next prev logic?? stuff it into ::next()
 
 		}
 
 		
     };
-}();
+};
+
+var SvgStepNavigation=funcSvgStepNavigation();
