@@ -3,7 +3,7 @@
  *
  *
  */
-var funcSvgStepNavigation = function () {
+var fabricateSvgStepNavigation = function () {
 
 	var ANIMATION_TIME=150;
 	var EASING='elastic';
@@ -145,4 +145,4 @@ var funcSvgStepNavigation = function () {
     };
 };
 
-var SvgStepNavigation=funcSvgStepNavigation();
+var SvgStepNavigation=fabricateSvgStepNavigation();
