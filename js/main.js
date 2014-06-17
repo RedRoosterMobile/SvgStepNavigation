@@ -11,42 +11,30 @@ var canvas = Raphael(document.getElementById("canvas"), 600, 100);
 // active, error, done, upcoming
 var exampleStepsArray = [
 	{
-		label: 'some text',
+		label: 'Title',
 		status: 'active',
 		callback: function(event){console.log(exampleStepsArray[0].label);}
 	},
 	{
-		label: 'some other text',
+		label: 'Upload',
 		status: 'upcoming',
 		callback: function(event){console.log(exampleStepsArray[1].label);}
 	},
 	{
-		label: 'some text',
-		status: 'upcoming',
+		label: 'Ausstattung',
+		status: 'upcoming'
 	},
 	{
-		label: 'some text',
-		status: 'upcoming',
+		label: 'Format',
+		status: 'upcoming'
 	},
 	{
-		label: 'some text',
-		status: 'upcoming',
+		label: 'Bindung',
+		status: 'upcoming'
 	},
 	{
-		label: 'some text',
-		status: 'upcoming',
-	},
-	{
-		label: 'some text',
-		status: 'upcoming',
-	},
-	{
-		label: 'some text',
-		status: 'upcoming',
-	},
-	{
-		label: 'some text',
-		status: 'upcoming',
+		label: 'Zusammenfassung',
+		status: 'upcoming'
 	}
 ];
 var exampleSubnavStepsArray = [

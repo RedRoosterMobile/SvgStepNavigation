@@ -3,7 +3,7 @@
  *
  *
  */
-var funcSvgStepNavigation = function () {
+var fabricateSvgStepNavigation = function () {
 
 	var ANIMATION_TIME=150;
 	var EASING='elastic';
@@ -17,13 +17,14 @@ var funcSvgStepNavigation = function () {
 	var _totalCurrentSubnavSteps;
 	var _radius=10;
 	var _stepsArray;
+    var _stepsArrayBackup;
 	var _viewObjectsArray=[];
 	var _totalSteps;
 	var _lineObj;
 	var _statusColorHash = {
-		active: 'blue',
-		error: 'red', 
-		done: 'green', 
+		active: '#39b3d7',
+		error: '#d9534f',
+		done: '#47a447',
 		upcoming: 'grey'
 	}
 
@@ -37,11 +38,12 @@ var funcSvgStepNavigation = function () {
 		var stepWidth = (_paperWidth/_totalSteps)-(_paperWidth/_totalSteps)/_totalSteps;
 		for (var i=0;i<_totalSteps;i++) {
 			// Creates circle at x = 50, y = 40, with radius 10
-			var circle = _raphaelPaper.circle(stepWidth*(i+1), _paperHeight/2, 10);
+			var circle = _raphaelPaper.circle(stepWidth*(i+1), _paperHeight/2, _radius);
+            var t = _raphaelPaper.text(stepWidth*(i+1), _paperHeight/2+25, _stepsArray[i]['label']).attr;
 			// Sets the fill attribute of the circle to red (#f00)
 			circle.attr("fill", _statusColorHash[_stepsArray[i]['status']]);
 			// Sets the stroke attribute of the circle to white
-			circle.attr("stroke", "none");
+			circle.attr("stroke", "white").attr('stroke-width','2px');
 
 			_viewObjectsArray.push(circle);
 			if (_stepsArray[i]['callback']) {
@@ -58,7 +60,7 @@ var funcSvgStepNavigation = function () {
 		var endX = x * _totalSteps;
 
 		// @see: http://raphaeljs.com/reference.html#Paper.path
-		_lineObj = _raphaelPaper.path("M"+x+" "+y+"L"+endX+" "+y);
+		_lineObj = _raphaelPaper.path("M"+x+" "+y+"L"+endX+" "+y).attr("stroke", "white");;
 	}
 	function popCircle(circleObj) {
 		
@@ -75,15 +77,19 @@ var funcSvgStepNavigation = function () {
 	}
 
 
-	//function setStatusView
-	
+	//public methods:
     return {
 		// for the outside
 		init: function(raphaelPaper,stepsArray,radius) {
+            console.log(stepsArray);
 			_raphaelPaper = raphaelPaper;
 			_paperWidth = raphaelPaper.width;
 			_paperHeight = raphaelPaper.height;
 			_stepsArray = stepsArray;
+            // clone array
+            _stepsArrayBackup = $.map(stepsArray, function (obj) {
+                return $.extend(true, {}, obj);
+            });//stepsArray.slice(0);
 			_totalSteps = stepsArray.length;
 			if (radius)
 				_radius=radius;
@@ -108,7 +114,7 @@ var funcSvgStepNavigation = function () {
 			// grey or green out depending on current validation??
 		},
 		to: function(stepNo) {
-			
+			//NYI
 		},
 		// active, error, done, upcoming
 		setStatus: function (stepNo,newStatus) {
@@ -121,17 +127,19 @@ var funcSvgStepNavigation = function () {
 					pumpCircle(vst);
 				} else if (newStatus=='done') {
 					vst.attr('fill', _statusColorHash['done']);
-					normalizeCircle(vst)
+					normalizeCircle(vst);
 				} else if (newStatus=='active') {
 					vst.attr('fill', _statusColorHash['active']);
 					popCircle(vst);
 				}
 				else if (newStatus=='upcoming') {
 					vst.attr('fill', _statusColorHash['upcoming']);
+                    normalizeCircle(vst);
 				}
 			}
 
 		},
+        // TODO: add subnav
 		addSubnav: function (toStep) {
 			console.log('adding subnavigation to step: '+ toStep);
 			// move sourrounding to side
@@ -139,10 +147,22 @@ var funcSvgStepNavigation = function () {
 			// add callbacks
 			// next prev logic?? stuff it into ::next()
 
-		}
+			//create new 
+			funcSvgStepNavigation();
 
-		
+		},
+        reset: function() {
+
+            for (var i=1;i<_totalSteps;i++) {
+                this.setStatus(i,'upcoming');
+            }
+            this.setStatus(0,'active');
+            _currentStep = 0;
+        },
+        getOriginalSteps: function() {
+            return _stepsArrayBackup;
+        }
     };
 };
 
-var SvgStepNavigation=funcSvgStepNavigation();
+var SvgStepNavigation=fabricateSvgStepNavigation();

@@ -11,29 +11,33 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/amelia/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.8.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <div class="container">
+            <!-- Add your site or application content here -->
 
-        <!-- Add your site or application content here -->
-        <h1>Navigation:</h1>
-        <div id="canvas" style="">
-            
+            <center>
+                <h1>Navigation:</h1>
+                <div id="canvas" style="-webkit-transform: translate3d(0,0,0);-webkit-transform: rotateY(45deg);"></div>
+                <div class="btn-group">
+                    <button class="btn btn-danger" onclick="SvgStepNavigation.next('error example')">&raquo;</button>
+                    <button class="btn btn-default" onclick="SvgStepNavigation.next()">&raquo;</button>
+                    <button class="btn btn-warning" onclick="SvgStepNavigation.reset()">reset</button>
+                </div>
+            </center>
+            <div id="canvas2" style="">
+
+            </div>
         </div>
-        <div id="canvas2" style="">
-            
-        </div>
-
-
-
-
-
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src="js/vendor/raphael.js"></script>
         <script src="js/SvgStepNavigation.js"></script>
         <script src="js/main.js"></script>
