@@ -69,7 +69,7 @@ var fabricateSvgStepNavigation = function () {
 	function pumpCircle(circleObj) {
 		
 		circleObj.animate({r:_radius},ANIMATION_TIME/2,EASING,function(){
-            this.animate( { r:_radius*1.2 } , ANIMATION_TIME/2 );
+            this.animate( { r:_radius*1.2 } , ANIMATION_TIME/2,EASING );
         });
 	}
 	function normalizeCircle(circleObj) {
