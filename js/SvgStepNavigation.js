@@ -68,8 +68,8 @@ var fabricateSvgStepNavigation = function () {
 	}
 	function pumpCircle(circleObj) {
 		
-		circleObj.animate({r:_radius*1.20},ANIMATION_TIME/2,EASING,function(){
-            this.animate( { r:_radius } , ANIMATION_TIME/2 );
+		circleObj.animate({r:_radius},ANIMATION_TIME/2,EASING,function(){
+            this.animate( { r:_radius*1.2 } , ANIMATION_TIME/2 );
         });
 	}
 	function normalizeCircle(circleObj) {
@@ -107,7 +107,8 @@ var fabricateSvgStepNavigation = function () {
 						SvgStepNavigation.setStatus(_currentStep,'active');
 				}
 			} else {
-				SvgStepNavigation.setStatus(_currentStep,'error');
+                if (_currentStep<_totalSteps)
+				    SvgStepNavigation.setStatus(_currentStep,'error');
 			}
 		},
 		prev: function() {
@@ -152,10 +153,11 @@ var fabricateSvgStepNavigation = function () {
 
 		},
         reset: function() {
-
+            // all to upcoming
             for (var i=1;i<_totalSteps;i++) {
                 this.setStatus(i,'upcoming');
             }
+            // first to active
             this.setStatus(0,'active');
             _currentStep = 0;
         },
