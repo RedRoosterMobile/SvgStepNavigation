@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'h_lt';
+    src: url('ltnice.eot');
+    src: url('ltnice.eot?#iefix') format('embedded-opentype'),
+    url('ltnice.woff') format('woff'),
+    url('ltnice.ttf') format('truetype'),
+    url('ltnice.svg#ltnice') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'h_bd';
+    src: url('bdnice.eot');
+    src: url('bdnice.eot?#iefix') format('embedded-opentype'),
+    url('bdnice.woff') format('woff'),
+    url('bdnice.ttf') format('truetype'),
+    url('bdnice.svg#bdnice') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
